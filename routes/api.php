@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('pictures', 'PuctureController@index');
+Route::get('pictures/{picture}', 'PuctureController@show');
+Route::post('pictures', 'PuctureController@store');
+Route::put('pictures/{picture}', 'PuctureController@update');
+Route::delete('pictures/{picture}', 'PuctureController@delete');
