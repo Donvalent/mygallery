@@ -14,4 +14,24 @@ class File extends Model
     protected $fillable = [
         'title', 'path'
     ];
+
+    /**
+     * Relations picture
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function picture()
+    {
+        return $this->belongsTo(Picture::class);
+    }
+
+    /**
+     * Save file in folder
+     *
+     * @param $file
+     */
+    public function saveFile($file)
+    {
+        $file->move($this->path, $this->title);
+    }
 }

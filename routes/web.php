@@ -6,9 +6,7 @@ Route::get('/', function () {
     return view('new');
 });
 
-Route::get('/new', function () {
-    return view('new');
-});
+Route::get('/new', 'NewController@index');
 
 Route::get('/popular', function () {
     return view('popular');

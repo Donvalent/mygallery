@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Picture extends Model
 {
@@ -14,4 +15,14 @@ class Picture extends Model
     protected $fillable = [
         'title', 'description', 'category', 'file_id'
     ];
+
+    /**
+     * Relations to File
+     *
+     * @return HasOne
+     */
+    public function file() : HasOne
+    {
+        return $this->hasOne(File::class);
+    }
 }
