@@ -21,8 +21,9 @@ class Picture extends Model
      *
      * @return HasOne
      */
-    public function file() : HasOne
+    public function file()
     {
-        return $this->hasOne(File::class);
+
+        return $this->belongsTo(File::class);
     }
 }

@@ -13,14 +13,17 @@ class CreatePicturesTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->text('description');
             $table->string('category');
-            $table->integer('file_id')->unique();
+            $table->integer('file_id')->unique()->unsigned();
             $table->timestamps();
+            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -30,6 +33,8 @@ class CreatePicturesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('pictures');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class File extends Model
 {
@@ -20,9 +21,9 @@ class File extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function picture()
+    public function picture() : HasOne
     {
-        return $this->belongsTo(Picture::class);
+        return $this->hasOne(Picture::class);
     }
 
     /**

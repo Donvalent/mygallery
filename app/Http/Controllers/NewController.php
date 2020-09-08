@@ -9,7 +9,7 @@ class NewController extends Controller
 {
     public function index()
     {
-        $pictures = Picture::with('files')->paginate(12);
+        $pictures = Picture::with('file')->paginate(12);
 
         return view('new', [
             'pictures' => $pictures,

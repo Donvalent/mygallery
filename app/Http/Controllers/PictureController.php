@@ -25,7 +25,7 @@ class PictureController extends Controller
 
         $file = new File([
             'title' => $request->file('image')->getClientOriginalName(),
-            'path' => trim(public_path(), '/public') . 'resources\pictures'
+            'path' => public_path() . '\images',
         ]);
 
         $file->save();
