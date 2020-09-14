@@ -18,7 +18,6 @@ class CreatePicturesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->string('category');
             $table->integer('file_id')->unique()->unsigned();
             $table->timestamps();
             $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');

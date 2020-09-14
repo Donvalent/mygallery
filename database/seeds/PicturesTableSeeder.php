@@ -16,12 +16,18 @@ class PicturesTableSeeder extends Seeder
 
         foreach ($files as $file)
         {
-            DB::table('pictures')->insert([
-                'title' => Str::random(10),
-                'description' => Str::random(10),
-                'category' => 'New',
-                'file_id' => $file->id
-            ]);
+            try
+            {
+                DB::table('pictures')->insert([
+                    'title' => Str::random(10),
+                    'description' => Str::random(10),
+                    'file_id' => $file->id
+                ]);
+            }
+            catch(Exception $exception)
+            {
+
+            }
         }
     }
 }

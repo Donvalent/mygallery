@@ -13,7 +13,7 @@ class Picture extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'category', 'file_id'
+        'title', 'description', 'file_id'
     ];
 
     /**
@@ -23,7 +23,16 @@ class Picture extends Model
      */
     public function file()
     {
-
         return $this->belongsTo(File::class);
+    }
+
+    /**
+     * Relations to Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

@@ -2,12 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('new');
-});
+Route::get('/','CategoryController@index')->name('new');
 
-Route::get('/new', 'NewController@index');
+Route::get('/new','CategoryController@index')->name('new');
 
-Route::get('/popular', function () {
-    return view('popular');
-});
+Route::get('/popular','CategoryController@index')->name('popular');
