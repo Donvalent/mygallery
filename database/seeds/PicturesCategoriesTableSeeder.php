@@ -12,11 +12,22 @@ class PicturesCategoriesTableSeeder extends Seeder
     public function run()
     {
         $picturesId = DB::table('pictures')->pluck('id');
-        $categoriesId = DB::table('categories')->pluck('id');
+        $categoriesId = array();
 
-        foreach($picturesId as $id)
+        foreach (DB::table('categories')->pluck('id') as $category)
+            array_push($categoriesId, $category);
+
+        foreach ($picturesId as $pictureId)
         {
+            $categoryRandomId = array_rand($categoriesId, 1);
 
+            for ($i = $categoriesId[array_key_first($categoriesId)]; $i <= $categoriesId[$categoryRandomId]; $i++)
+            {
+                DB::table('pictures_categories')->insert([
+                    'picture_id' => $pictureId,
+                    'category_id' => $i
+                ]);
+            }
         }
     }
 }
