@@ -17,13 +17,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">New <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/new">New <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Popular</a>
+                    <a class="nav-link" href="/popular">Popular</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Memes</a>
+                    <a class="nav-link" href="/memes">Memes</a>
                 </li>
             </ul>
         </div>

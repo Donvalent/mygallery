@@ -33,6 +33,6 @@ class Picture extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'pictures_categories');
     }
 }

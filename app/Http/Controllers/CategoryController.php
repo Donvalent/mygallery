@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,8 +15,9 @@ class CategoryController extends Controller
 
     public function index()
     {
-
-        $pictures = Picture::with('file')->where(with('category'), Route::currentRouteName())->paginate(12);
+        $pictures = Picture::with('file', 'categories')->whereHas('categories', function ($query){
+            $query->where('title', ucfirst(Route::currentRouteName()));
+        })->paginate(12);
 
         return view('category', [
             'pictures' => $pictures,
