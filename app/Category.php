@@ -16,6 +16,13 @@ class Category extends Model
     ];
 
     /**
+     * Table
+     *
+     * @var string
+     */
+    protected $table = 'categories';
+
+    /**
      * Relations to Picture
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
