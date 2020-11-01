@@ -14,9 +14,9 @@ class PictureController extends Controller
         return Picture::all();
     }
 
-    public function show(Picture $picture)
+    public function show(int $pictureId)
     {
-        return $picture;
+        return response()->json(Picture::findOrFail($pictureId)->with('categories')->first(), 200);
     }
 
     public function store(Request $request)
@@ -57,17 +57,32 @@ class PictureController extends Controller
         return response()->json('File has created!' ,201);
     }
 
-    public function update(Request $request, Picture $picture)
+    public function update(Picture $picture, Request $request)
     {
-        $picture->update($request->all());
+        try {
+            $data = $request->all();
+            $picture->update($data);
 
-        return response()->json($picture, 200);
+            $categories = explode(', ',$request->get('categories'));
+            $categoriesId = [];
+            foreach ($categories as $category)
+                array_push($categoriesId, Category::where('title', '=', $category)->first('id')->id);
+
+            $picture->categories()->sync($categoriesId);
+
+            return response()->json('File has updated', 200);
+        }
+        catch (\Exception $exception)
+        {
+            return response()->json('Invalid request', 400);
+        }
     }
 
-    public function delete(Picture $picture)
+    public function delete(int $pictureId)
     {
-        $picture->delete();
+        $picture = Picture::findOrFail($pictureId);
+        $picture->file()->delete();
 
-        return response()->json(null, 204);
+        return response()->json('File has deleted!', 204);
     }
 }
